@@ -3,6 +3,7 @@ package com.blogpost.mybinaryway;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -18,16 +19,18 @@ public class TitleScreen implements Screen {
 
     private Stage stage;
     private Game game;
+    private Label title;
 
 
     public TitleScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
 
-        Label title = new Label("The Bugs Killer", gameSkin, "big-black");
+        title = new Label("The Bugs Killer", gameSkin, "big-black");
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight() * 2 / 3);
         title.setWidth(Gdx.graphics.getWidth());
+
         stage.addActor(title);
 
         TextButton playButton = new TextButton("Play!", TheBugsKiller.gameSkin);
@@ -71,10 +74,15 @@ public class TitleScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        int min = 0;
+        int max = 255;
+        Gdx.gl.glClearColor(200, max, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+
+
+        title.setColor(new Color(100, 200, 255, 1));
     }
 
     @Override
@@ -101,4 +109,6 @@ public class TitleScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
+
+
 }

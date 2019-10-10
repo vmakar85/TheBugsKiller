@@ -11,6 +11,7 @@ public class TheBugsKiller extends Game {
     Texture img;
     static public Skin gameSkin;
 
+
     @Override
     public void create() {
         // подготовка наших ресурсов
@@ -20,6 +21,9 @@ public class TheBugsKiller extends Game {
         //это наши шкурки
         gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
         this.setScreen(new TitleScreen(this));
+
+        // Load the sprite sheet as a Texture
+
 
     }
 
