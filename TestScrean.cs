@@ -16,7 +16,6 @@ public partial class TestScrean : Node2D
 		smashSound = GetNode<AudioStreamPlayer>(path: "/root/Main/TestScrean/SmashSound");
 		lText = GetNode<RichTextLabel>(path: "/root/Main/TestScrean/RichTextLabel");
 		spriteTest = GetNode<AnimatedSprite2D>(path: "/root/Main/TestScrean/BugSprite");
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +27,6 @@ public partial class TestScrean : Node2D
 		lText.AddThemeColorOverride("default_color", new Color(r, g, b, 1));
 		//Godot.GD.Print("r: " + r + " g: " + g + " b: " + b);
 		Godot.GD.Print("delta: " + delta);
-
 	}
 
 	private void _on_shot_btn_pressed()
@@ -52,6 +50,10 @@ public partial class TestScrean : Node2D
 	{
 		// Replace with function body.
 	}
+	private void _on_touch_screen_button_pressed() 
+	{
+        spriteTest.Play();
+    }
 
 }
 
