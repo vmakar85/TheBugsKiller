@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://subw0mcqy4co"]
+[gd_scene load_steps=13 format=3 uid="uid://subw0mcqy4co"]
 
 [ext_resource type="Script" path="res://TestScrean.cs" id="1_cobye"]
 [ext_resource type="Script" path="res://ShotBtn.cs" id="1_pl8r1"]
 [ext_resource type="Texture2D" uid="uid://ct2j6syshlwsa" path="res://assets/Bug.png" id="1_vbv1l"]
 [ext_resource type="AudioStream" uid="uid://d0dsgbdbxfqvc" path="res://assets/shot.wav" id="3_jle3d"]
 [ext_resource type="AudioStream" uid="uid://b8brtr7ady4by" path="res://assets/smash.wav" id="4_8dohw"]
-[ext_resource type="FontFile" uid="uid://0t6wwhfjrbsd" path="res://Kenney Pixel.ttf" id="6_rtpam"]
+[ext_resource type="FontFile" uid="uid://0t6wwhfjrbsd" path="res://assets/Kenney Pixel.ttf" id="6_rtpam"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdaml"]
 atlas = ExtResource("1_vbv1l")
@@ -44,9 +44,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_gsfpb")
 }],
 "loop": true,
-"name": &"move",
+"name": &"run",
 "speed": 5.0
 }]
+
+[sub_resource type="Curve2D" id="Curve2D_pjvkc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 164.753, 0, 0, 0, 0, 480, 164.753, 0, 0, 0, 0, 480, 322.562, 0, 0, 0, 0, 0, 322.562, 0, 0, 0, 0, 0, 164.753)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 
@@ -59,27 +65,11 @@ animations = [{
 [node name="TestScrean" type="Node2D" parent="."]
 script = ExtResource("1_cobye")
 
-[node name="ShotBtn" type="Button" parent="TestScrean"]
-offset_left = 34.0
-offset_top = 50.0
-offset_right = 128.0
-offset_bottom = 82.0
-text = "shot"
-script = ExtResource("1_pl8r1")
-
-[node name="SmashBtn" type="Button" parent="TestScrean"]
-offset_left = 34.0
-offset_top = 10.0
-offset_right = 127.0
-offset_bottom = 41.0
-text = "smash"
-
 [node name="BugSprite" type="AnimatedSprite2D" parent="TestScrean"]
 texture_filter = 1
 position = Vector2(289, 62)
 sprite_frames = SubResource("SpriteFrames_w6238")
-animation = &"dead"
-frame_progress = 0.549873
+animation = &"run"
 
 [node name="ShotSound" type="AudioStreamPlayer" parent="TestScrean"]
 stream = ExtResource("3_jle3d")
@@ -102,5 +92,50 @@ text = "The bugs Killer"
 fit_content = true
 scroll_active = false
 
-[connection signal="pressed" from="TestScrean/ShotBtn" to="TestScrean" method="_on_shot_btn_pressed"]
-[connection signal="pressed" from="TestScrean/SmashBtn" to="TestScrean" method="_on_smash_btn_pressed"]
+[node name="BugsTimer" type="Timer" parent="TestScrean"]
+wait_time = 0.5
+
+[node name="Btn" type="Node" parent="TestScrean"]
+
+[node name="DeadBtn" type="Button" parent="TestScrean/Btn"]
+offset_left = 340.0
+offset_top = 62.0
+offset_right = 433.0
+offset_bottom = 93.0
+text = "dead"
+
+[node name="RunBtn" type="Button" parent="TestScrean/Btn"]
+offset_left = 339.0
+offset_top = 16.0
+offset_right = 432.0
+offset_bottom = 47.0
+text = "run"
+
+[node name="ShotBtn" type="Button" parent="TestScrean/Btn"]
+offset_left = 34.0
+offset_top = 50.0
+offset_right = 128.0
+offset_bottom = 82.0
+text = "miss shot"
+script = ExtResource("1_pl8r1")
+
+[node name="SmashBtn" type="Button" parent="TestScrean/Btn"]
+offset_left = 34.0
+offset_top = 10.0
+offset_right = 127.0
+offset_bottom = 41.0
+text = "smash"
+
+[node name="BugsPath2D" type="Path2D" parent="TestScrean"]
+position = Vector2(0, -751.688)
+scale = Vector2(1, 4.5625)
+curve = SubResource("Curve2D_pjvkc")
+
+[node name="BugsSpawLocation2D" type="PathFollow2D" parent="TestScrean/BugsPath2D"]
+position = Vector2(0, 164.753)
+
+[connection signal="timeout" from="TestScrean/BugsTimer" to="TestScrean" method="_on_bugs_timer_timeout"]
+[connection signal="pressed" from="TestScrean/Btn/DeadBtn" to="TestScrean" method="_on_dead_btn_pressed"]
+[connection signal="pressed" from="TestScrean/Btn/RunBtn" to="TestScrean" method="_on_run_btn_pressed"]
+[connection signal="pressed" from="TestScrean/Btn/ShotBtn" to="TestScrean" method="_on_shot_btn_pressed"]
+[connection signal="pressed" from="TestScrean/Btn/SmashBtn" to="TestScrean" method="_on_smash_btn_pressed"]

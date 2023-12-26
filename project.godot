@@ -18,11 +18,18 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=480
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 
 [dotnet]
 
 project/assembly_name="TheBugsKiller"
+
+[filesystem]
+
+import/fbx/enabled=false
 
 [rendering]
 
