@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="TheBugsKiller"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/version="0.0.2.a"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/handheld/orientation=1
 
 [dotnet]
 
@@ -22,3 +28,5 @@ project/assembly_name="TheBugsKiller"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
