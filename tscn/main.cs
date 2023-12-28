@@ -9,6 +9,7 @@ public partial class main : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Input.VibrateHandheld(50);
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -37,6 +38,7 @@ public partial class main : Node2D
 		// Spawn the mob by adding it to the Main scene.
 		AddChild(mob);
 		//Godot.GD.Print("timer: bzz bzz bzzz.....");
+		// add some score, add some dodge hit logik 
 	}
 }
 

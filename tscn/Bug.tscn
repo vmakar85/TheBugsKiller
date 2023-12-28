@@ -1,30 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://deniiawq5dkc1"]
+[gd_scene load_steps=11 format=3 uid="uid://deniiawq5dkc1"]
 
 [ext_resource type="Script" path="res://tscn/Bug.cs" id="1_33bue"]
-[ext_resource type="Texture2D" uid="uid://ct2j6syshlwsa" path="res://assets/Bug.png" id="2_pb3xl"]
+[ext_resource type="Texture2D" uid="uid://co6pk4o57qlr2" path="res://assets/Bug_2_0.png" id="2_r700i"]
 [ext_resource type="AudioStream" uid="uid://b8brtr7ady4by" path="res://assets/smash.wav" id="3_1g71q"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_svsnb"]
-atlas = ExtResource("2_pb3xl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssp8b"]
+atlas = ExtResource("2_r700i")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rcfi4"]
-atlas = ExtResource("2_pb3xl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_krlw0"]
+atlas = ExtResource("2_r700i")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_575p3"]
-atlas = ExtResource("2_pb3xl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfu41"]
+atlas = ExtResource("2_r700i")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3p6li"]
-atlas = ExtResource("2_pb3xl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7sjr"]
+atlas = ExtResource("2_r700i")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_riy31"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_svsnb")
+"texture": SubResource("AtlasTexture_ssp8b")
 }],
 "loop": true,
 "name": &"dead",
@@ -32,13 +32,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rcfi4")
+"texture": SubResource("AtlasTexture_krlw0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_575p3")
+"texture": SubResource("AtlasTexture_vfu41")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3p6li")
+"texture": SubResource("AtlasTexture_c7sjr")
 }],
 "loop": true,
 "name": &"run",
@@ -46,6 +46,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqqnj"]
+size = Vector2(51.0001, 54.9999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bw34"]
+size = Vector2(48, 150.375)
 
 [node name="Bug" type="RigidBody2D"]
 script = ExtResource("1_33bue")
@@ -62,9 +66,35 @@ animation = &"run"
 rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(4.50005, 0.500049)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_wqqnj")
-debug_color = Color(0.901961, 0, 0.380392, 1)
+debug_color = Color(0.901961, 0, 0.380392, 0.607843)
+
+[node name="Area2D_miss" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
+position = Vector2(-0.000206947, -57)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_3bw34")
+one_way_collision_margin = 0.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
+position = Vector2(-0.999826, 48)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_3bw34")
+one_way_collision_margin = 0.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
+position = Vector2(51, -2.00018)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_3bw34")
+one_way_collision_margin = 0.0
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
+position = Vector2(-50, -2.99982)
+shape = SubResource("RectangleShape2D_3bw34")
+one_way_collision_margin = 0.0
 
 [node name="SmashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1g71q")
