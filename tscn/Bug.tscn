@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://deniiawq5dkc1"]
+[gd_scene load_steps=12 format=3 uid="uid://deniiawq5dkc1"]
 
 [ext_resource type="Script" path="res://tscn/Bug.cs" id="1_33bue"]
 [ext_resource type="Texture2D" uid="uid://co6pk4o57qlr2" path="res://assets/Bug_2_0.png" id="2_r700i"]
 [ext_resource type="AudioStream" uid="uid://b8brtr7ady4by" path="res://assets/smash.wav" id="3_1g71q"]
+[ext_resource type="AudioStream" uid="uid://d0dsgbdbxfqvc" path="res://assets/shot.wav" id="4_x8eni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssp8b"]
 atlas = ExtResource("2_r700i")
@@ -49,7 +50,7 @@ animations = [{
 size = Vector2(51.0001, 54.9999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3bw34"]
-size = Vector2(48, 150.375)
+size = Vector2(48, 97.0938)
 
 [node name="Bug" type="RigidBody2D"]
 script = ExtResource("1_33bue")
@@ -57,6 +58,7 @@ script = ExtResource("1_33bue")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_riy31")
@@ -74,31 +76,53 @@ debug_color = Color(0.901961, 0, 0.380392, 0.607843)
 [node name="Area2D_miss" type="Area2D" parent="AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
-position = Vector2(-0.000206947, -57)
+position = Vector2(-23.0002, -55.9999)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_3bw34")
 one_way_collision_margin = 0.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
-position = Vector2(-0.999826, 48)
+position = Vector2(23, 47)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_3bw34")
 one_way_collision_margin = 0.0
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
-position = Vector2(51, -2.00018)
+position = Vector2(49.9999, -26.0002)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_3bw34")
 one_way_collision_margin = 0.0
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D_miss"]
-position = Vector2(-50, -2.99982)
+position = Vector2(-48.9999, 17.0002)
 shape = SubResource("RectangleShape2D_3bw34")
 one_way_collision_margin = 0.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="AnimatedSprite2D"]
+z_index = -1
+rotation = -1.5708
+emitting = false
+amount = 3016
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.9
+initial_velocity_max = 48.9
+linear_accel_min = -93.22
+linear_accel_max = -26.77
+color = Color(1, 0, 0, 1)
 
 [node name="SmashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1g71q")
 
+[node name="MissSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x8eni")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="input_event" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="input_event" from="AnimatedSprite2D/Area2D_miss" to="." method="_on_area_2d_miss_input_event"]
