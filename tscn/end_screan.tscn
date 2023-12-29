@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd6rqrmfc2hx8"]
+
+[ext_resource type="Script" path="res://tscn/end_screan.cs" id="1_uv0ju"]
+[ext_resource type="FontFile" uid="uid://0t6wwhfjrbsd" path="res://assets/Kenney Pixel.ttf" id="2_bmxfx"]
+
+[node name="EndScrean" type="Node2D"]
+script = ExtResource("1_uv0ju")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 232.0
+offset_top = 480.0
+offset_right = 392.0
+offset_bottom = 552.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bmxfx")
+theme_override_font_sizes/font_size = 48
+text = "play again"
+flat = true
+
+[node name="Accuracy" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 352.0
+offset_right = 568.0
+offset_bottom = 440.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_bmxfx")
+theme_override_font_sizes/normal_font_size = 52
+text = "Accuracy: "
+
+[node name="Hit" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 232.0
+offset_right = 592.0
+offset_bottom = 320.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_bmxfx")
+theme_override_font_sizes/normal_font_size = 52
+text = "Bugs hit : "
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtpiuc46vuld4"]
+
+[ext_resource type="FontFile" uid="uid://0t6wwhfjrbsd" path="res://assets/Kenney Pixel.ttf" id="1_b70o7"]
+[ext_resource type="Script" path="res://tscn/title.cs" id="1_puskq"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_puskq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 424.0
+offset_right = 600.0
+offset_bottom = 555.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_b70o7")
+theme_override_font_sizes/normal_font_size = 122
+bbcode_enabled = true
+text = "[wave=70] The Bugs Killer[/wave]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 584.0
+offset_right = 432.0
+offset_bottom = 648.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_b70o7")
+theme_override_font_sizes/font_size = 72
+text = "NEW GAME"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -15,6 +15,9 @@ script = ExtResource("1_35gkt")
 wait_time = 0.5
 autostart = true
 
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+
 [node name="MobPath" type="Path2D" parent="."]
 position = Vector2(67, 150)
 curve = SubResource("Curve2D_5hj6v")
@@ -23,3 +26,4 @@ curve = SubResource("Curve2D_5hj6v")
 position = Vector2(-67, -150)
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

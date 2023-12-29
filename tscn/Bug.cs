@@ -10,8 +10,10 @@ public partial class Bug : RigidBody2D
 	Godot.CpuParticles2D cpuParticles2D;
 	//Godot.GpuParticles2D gpuParticles2D;
 
-	Boolean isDead = false;
-
+	//My variable 
+	private Boolean isDead = false;
+	private int _score;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -42,7 +44,7 @@ public partial class Bug : RigidBody2D
 			smashSound.Play();
 			Input.VibrateHandheld(50);
 			//	
-			
+			main.score++; 
 			Godot.GD.Print("bzz bzz bzzz.....");
 
 		}
@@ -52,6 +54,7 @@ public partial class Bug : RigidBody2D
 		if (@event is InputEventScreenTouch && !isDead && !missSound.Playing)
 		{
 			missSound.Play();
+			main.miss++;
 		}
 	}
 }
